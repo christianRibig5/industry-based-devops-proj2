@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xyztech-deployment
+  namespace: default
+  labels:
+    app: xyztech
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xyztech
+  template:
+    metadata:
+      labels:
+        app: xyztech
+    spec:
+      containers:
+        - name: xyztech-container
+          image: xyztech-app:latest  # use registry path if pushing to DockerHub
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: IfNotPresent
